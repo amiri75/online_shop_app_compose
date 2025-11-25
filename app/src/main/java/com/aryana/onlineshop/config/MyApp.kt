@@ -1,8 +1,8 @@
-package com.aryana.onlineshop
+package com.aryana.onlineshop.config
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class App: Application() {
+class MyApp: Application() {
 }

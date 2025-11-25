@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.coil.compose)
     //hilt
     implementation(libs.dagger.hilt)
+    implementation(libs.hilt.navigation.compose)
     ksp(libs.dagger.hilt.compiler)
     //retrofit
     implementation(libs.retrofit)
