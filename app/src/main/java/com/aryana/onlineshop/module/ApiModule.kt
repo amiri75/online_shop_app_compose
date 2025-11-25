@@ -1,11 +1,11 @@
 package com.aryana.onlineshop.module
 
 import com.aryana.onlineshop.api.customer.UserApi
-import com.aryana.onlineshop.api.invoices.InvoiceApi
-import com.aryana.onlineshop.api.invoices.TransactionApi
-import com.aryana.onlineshop.api.products.ColorApi
-import com.aryana.onlineshop.api.products.ProductApi
-import com.aryana.onlineshop.api.products.ProductCategoryApi
+import com.aryana.onlineshop.api.invoice.InvoiceApi
+import com.aryana.onlineshop.api.invoice.TransactionApi
+import com.aryana.onlineshop.api.product.ColorApi
+import com.aryana.onlineshop.api.product.ProductApi
+import com.aryana.onlineshop.api.product.ProductCategoryApi
 import com.aryana.onlineshop.api.site.BlogApi
 import com.aryana.onlineshop.api.site.ContentApi
 import com.aryana.onlineshop.api.site.SliderApi

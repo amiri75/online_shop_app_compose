@@ -25,4 +25,15 @@ object BaseApiResponse {
 
     private fun <T> error(errorMessage: String): NetworkResult<T> =
         NetworkResult.Error("api call failed : $errorMessage ")
+
+
+    fun prepareToken(token: String): String {
+        var result = token
+        if (!token.lowercase().startsWith("bearer"))
+            result = "Bearer $token"
+        return result
+    }
+
 }
+
+

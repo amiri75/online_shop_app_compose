@@ -23,10 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.aryana.onlineshop.model.products.Product
+import com.aryana.onlineshop.model.product.Product
 import com.aryana.onlineshop.network.NetworkResult
 import com.aryana.onlineshop.ui.theme.OnlineshopTheme
-import com.aryana.onlineshop.vm.ProductViewModel
+import com.aryana.onlineshop.vm.product.ProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,73 +37,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             OnlineshopTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GESlider()
+
                 }
             }
         }
     }
-
-
-}
-
-@Composable
-fun GESlider(
-    viewModel: ProductViewModel = hiltViewModel(),
-) {
-
-    val context = LocalContext.current
-    LaunchedEffect(Unit) {
-        // viewModel.getSliders()
-        viewModel.getProduct("fa", 1, 5)
-    }
-
-    var loading by remember {
-        mutableStateOf(false)
-    }
-//    var sliderById by remember {
-//        mutableStateOf(emptyList<Slider>())
-//    }
-
-    var productList by remember {
-        mutableStateOf(emptyList<Product>())
-    }
-
-    val productResult by viewModel.product.collectAsState()
-
-
-    when (productResult) {
-        is NetworkResult.Success -> {
-            loading = false
-            productList = productResult.data ?: emptyList()
-        }
-
-        is NetworkResult.Loading -> {
-            loading = true
-
-        }
-
-        is NetworkResult.Error -> {
-            loading = false
-            Toast.makeText(context, productResult.message, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-
-        if (loading) {
-            CircularProgressIndicator()
-        } else {
-
-            LazyColumn() {
-                items(productList) {
-                    Text(text = it.title)
-                }
-            }
-
-        }
-    }
-
 }
