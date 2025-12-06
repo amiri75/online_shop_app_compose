@@ -10,9 +10,9 @@ class SliderRepository @Inject constructor(
     private val api: SliderApi,
 ) {
 
-    suspend fun getSliders(): NetworkResult<List<Slider>> =
+    suspend fun getSliders(lang : String): NetworkResult<List<Slider>> =
         safeApiCall {
-            api.getSlider("fa")
+            api.getSlider(lang)
         }
 
     suspend fun getSlidersById(id : Long): NetworkResult<List<Slider>> =
