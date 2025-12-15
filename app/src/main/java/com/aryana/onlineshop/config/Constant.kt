@@ -1,4 +1,4 @@
-package com.aryana.onlineshop.util
+package com.aryana.onlineshop.config
 
 object Constant {
     const val LANG = "en"

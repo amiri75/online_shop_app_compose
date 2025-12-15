@@ -9,7 +9,7 @@ import com.aryana.onlineshop.network.NetworkResult
 import com.aryana.onlineshop.repository.product.ProductCategoryRepository
 import com.aryana.onlineshop.repository.product.ProductRepository
 import com.aryana.onlineshop.repository.site.SliderRepository
-import com.aryana.onlineshop.util.Constant.LANG
+import com.aryana.onlineshop.config.Constant.LANG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -25,28 +25,24 @@ class HomeViewModel @Inject constructor(
     var slides = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
         private set
 
-    var sliderById = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
-        private set
-
     var productCategory = MutableStateFlow<NetworkResult<List<ProductCategory>>>(NetworkResult.Loading())
-        private set
-
-    var productCategoryById = MutableStateFlow<NetworkResult<List<ProductCategory>>>(NetworkResult.Loading())
         private set
 
     var products = MutableStateFlow<NetworkResult<List<Product>>>(NetworkResult.Loading())
         private set
 
-    var productById = MutableStateFlow<NetworkResult<List<Product>>>(NetworkResult.Loading())
-        private set
-
-    var productCatById = MutableStateFlow<NetworkResult<List<Product>>>(NetworkResult.Loading())
-        private set
-
     init {
         getSliders(LANG)
         getProductCategory(LANG)
+        getProduct(LANG, 0, 6)
+    }
 
+    fun loadFilterProduct(filter: Int) {
+        when (filter) {
+            0 -> getProduct(LANG, 0, 6)
+            1 -> getProductNew(LANG)
+            2 -> getProductPopular(LANG)
+        }
     }
 
     fun getSliders(lang: String) {
@@ -55,22 +51,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getSlidersById(id: Long) {
-        viewModelScope.launch {
-            sliderById.value = sliderRepository.getSlidersById(id)
-        }
-    }
-
-
     fun getProductCategory(lang: String) {
         viewModelScope.launch {
             productCategory.value = productCategoryRepository.getProductCategory(lang)
-        }
-    }
-
-    fun getProductCategoryById(id: Long) {
-        viewModelScope.launch {
-            productCategoryById.value = productCategoryRepository.getProductCategoryById(id)
         }
     }
 
@@ -92,15 +75,4 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getProductById(id: Long) {
-        viewModelScope.launch {
-            productById.value = productRepository.getProductById(id)
-        }
-    }
-
-    fun getProductCatById(id: Long, pageIndex: Int, pageSize: Int) {
-        viewModelScope.launch {
-            productCatById.value = productRepository.getProductCatById(id, pageIndex, pageSize)
-        }
-    }
 }

@@ -9,9 +9,9 @@ import com.aryana.onlineshop.network.NetworkResult
 @Composable
 fun <T> DataUiStateHandler(
     networkResult: NetworkResult<T>,
-    modifierLoading: Modifier = Modifier,
+    modifier: Modifier = Modifier,
     loadingContent: @Composable () -> Unit = {
-        Loading(modifier = modifierLoading)
+        Loading(modifier = modifier)
     },
     errorContent: @Composable () -> Unit = {
         ToastError(context = LocalContext.current, errorMessage = networkResult.message)

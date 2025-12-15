@@ -3,6 +3,7 @@ package com.aryana.onlineshop.ui.component
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -22,20 +23,24 @@ fun AppCard(
     modifier: Modifier = Modifier,
     image: String? = null,
     title: String? = null,
-    subTitle: String? =null,
+    subTitle: String? = null,
+    onClick: () -> Unit = {},
 ) {
     Card(
         modifier = modifier
             .shadow(elevation = 8.dp, shape = RoundedCornerShape(20.dp), clip = true),
         shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(4.dp),
+        onClick = {
+            onClick()
+        }
     ) {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.BottomCenter
         ) {
             AppImage(image ?: "")
-            AppGradient(50.dp)
+            AppGradient(Modifier.height(50.dp))
             Column(
                 modifier = Modifier.padding(bottom = 8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally

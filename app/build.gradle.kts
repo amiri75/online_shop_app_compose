@@ -57,7 +57,6 @@ dependencies {
     //hilt
     implementation(libs.dagger.hilt)
     implementation(libs.hilt.navigation.compose)
-    implementation(libs.androidx.ui.graphics)
     ksp(libs.dagger.hilt.compiler)
     //retrofit
     implementation(libs.retrofit)

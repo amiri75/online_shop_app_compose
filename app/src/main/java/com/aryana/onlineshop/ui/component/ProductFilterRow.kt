@@ -8,7 +8,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -19,7 +18,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aryana.onlineshop.ui.theme.textColorApp
-import com.aryana.onlineshop.util.Constant.LANG
 import com.aryana.onlineshop.vm.HomeViewModel
 
 @Composable
@@ -30,22 +28,6 @@ fun ProductFilterRow(
     var selectedFilter by remember {
         mutableIntStateOf(0)
     }
-
-    LaunchedEffect(selectedFilter) {
-        when (selectedFilter) {
-            0 -> {
-                homeViewModel.getProduct(LANG, 0, 6)
-            }
-
-            1 -> {
-                homeViewModel.getProductNew(LANG)
-            }
-
-            2 -> {
-                homeViewModel.getProductPopular(LANG)
-            }
-        }
-    }
     LazyRow(
         modifier = Modifier,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -55,6 +37,7 @@ fun ProductFilterRow(
                 TextButton(
                     onClick = {
                         selectedFilter = index
+                        homeViewModel.loadFilterProduct(selectedFilter)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor =
@@ -70,7 +53,4 @@ fun ProductFilterRow(
     }
 }
 
-@Composable
-fun AppButton(text: String) {
 
-}

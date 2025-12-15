@@ -22,17 +22,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.aryana.onlineshop.model.product.ProductCategory
+import com.aryana.onlineshop.ui.navcontoroller.Screens
 import com.aryana.onlineshop.vm.HomeViewModel
 
 @Composable
-fun ProductCategoriesRow(homeViewModel: HomeViewModel) {
+fun ProductCategoriesRow(
+    navHostController: NavHostController,
+    homeViewModel: HomeViewModel) {
 
     val productCategory by homeViewModel.productCategory.collectAsState()
 
     DataUiStateHandler(
         networkResult = productCategory,
-        modifierLoading = Modifier.modifierLoading()
+        modifier = Modifier.modifierLoading()
     ) {
         LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             itemsIndexed(productCategory.data as List<ProductCategory>) { index, item ->
@@ -41,7 +45,9 @@ fun ProductCategoriesRow(homeViewModel: HomeViewModel) {
                         modifier = Modifier.size(160.dp,200.dp),
                         image = item.image,
                         title = item.title,
-                    )
+                    ){
+                        navHostController.navigate(Screens.Products.route+"/${item.id}/${item.title}")
+                    }
                 }
             }
         }

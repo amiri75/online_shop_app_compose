@@ -1,4 +1,4 @@
-package com.aryana.onlineshop.module
+package com.aryana.onlineshop.di
 
 import com.aryana.onlineshop.api.customer.UserApi
 import com.aryana.onlineshop.api.invoice.InvoiceApi

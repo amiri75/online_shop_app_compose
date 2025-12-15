@@ -32,7 +32,7 @@ fun SlidersRow(homeViewModel: HomeViewModel) {
 
     DataUiStateHandler(
         networkResult = slidersResult,
-        modifierLoading = Modifier.modifierLoading()
+        modifier = Modifier.modifierLoading()
     ) {
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(6.dp)
