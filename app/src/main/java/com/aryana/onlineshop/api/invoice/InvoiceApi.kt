@@ -19,9 +19,9 @@ interface InvoiceApi {
 
     @GET("invoice/user/{userId}")
     suspend fun getInvoiceByUserId(
+        @Path("userId") userId: Long,
         @Query("pageIndex") pageIndex: Int,
         @Query("pageSize") pageSize: Int,
-        @Path("userId") userId: Long,
         @Header("Authorization") token : String
     ): Response<ApiResponse<List<Invoice>>>
 }

@@ -36,24 +36,29 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun increaseQuantity(productId: Long) {
+    fun increaseQuantity(productId: Long, colorId: Long, sizeId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.increaseQuantity(productId)
+            repository.increaseQuantity(productId, colorId, sizeId)
         }
     }
 
-    fun decreaseQuantity(productId: Long) {
+    fun decreaseQuantity(productId: Long, colorId: Long, sizeId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.decreaseQuantity(productId)
+            repository.decreaseQuantity(productId, colorId, sizeId)
+
         }
     }
-
-
 
     fun addToBasket(product: Product?, color: ProductColor?, size: ProductSize?) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addToBasket(product, color, size)
         }
+    }
+    fun clearBasket(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.clear()
+        }
+
     }
 
 }

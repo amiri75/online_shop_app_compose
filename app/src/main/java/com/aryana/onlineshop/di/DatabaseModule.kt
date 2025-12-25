@@ -30,4 +30,7 @@ object DatabaseModule {
     @Singleton
     fun provideBasketDao(database: OnlineShopDatabase) = database.basketDao()
 
+    @Provides
+    @Singleton
+    fun provideUserDao(database: OnlineShopDatabase) = database.userDao()
 }

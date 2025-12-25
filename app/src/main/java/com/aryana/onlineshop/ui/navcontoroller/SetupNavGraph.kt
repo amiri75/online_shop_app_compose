@@ -8,9 +8,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.aryana.onlineshop.ui.screen.BasketScreen
+import com.aryana.onlineshop.ui.screen.ChangePasswordScreen
 import com.aryana.onlineshop.ui.screen.HomeScreen
+import com.aryana.onlineshop.ui.screen.InvoicesScreen
+import com.aryana.onlineshop.ui.screen.LoginScreen
 import com.aryana.onlineshop.ui.screen.ProductsScreen
+import com.aryana.onlineshop.ui.screen.ProfileScreen
+import com.aryana.onlineshop.ui.screen.SingleInvoiceScreen
 import com.aryana.onlineshop.ui.screen.SingleProductScreen
+import com.aryana.onlineshop.ui.screen.UserPaymentScreen
 
 @Composable
 fun SetupNavGraph(
@@ -58,6 +64,47 @@ fun SetupNavGraph(
             arguments = listOf()
         ) {
             BasketScreen(navController)
+        }
+
+        composable(
+            route = Screens.Login.route,
+            arguments = listOf()
+        ) {
+            LoginScreen(navController)
+        }
+        composable(
+            route = Screens.UserPayment.route,
+            arguments = listOf()
+        ) {
+            UserPaymentScreen(navController)
+        }
+        composable(
+            route = Screens.Profile.route,
+            arguments = listOf()
+        ) {
+            ProfileScreen(navController)
+        }
+        composable(
+            route = Screens.ChangePassword.route,
+            arguments = listOf()
+        ) {
+            ChangePasswordScreen(navController)
+        }
+        composable(
+            route = Screens.Invoices.route,
+            arguments = listOf()
+        ) {
+            InvoicesScreen(navController)
+        }
+        composable(
+            route = Screens.SingleInvoice.route + "/{id}",
+            arguments = listOf(
+                navArgument("id") {
+                    type = NavType.LongType
+                }
+            )
+        ) {
+            SingleInvoiceScreen(navController)
         }
     }
 }

@@ -32,9 +32,9 @@ interface BasketDao {
     @Query("SELECT COUNT(*) FROM basket")
     fun getCount(): Flow<Int>
 
-    @Query("UPDATE basket SET quantity = quantity + 1 WHERE productId = :productId")
-    suspend fun increaseQuantity(productId: Long)
+    @Query("UPDATE basket SET quantity = quantity + 1 WHERE productId = :productId AND colorId =:colorId AND sizeId =:sizeId")
+    suspend fun increaseQuantity(productId: Long, colorId: Long, sizeId: Long)
 
-    @Query("UPDATE basket SET quantity = quantity - 1  WHERE productId = :productId AND quantity > 1")
-    suspend fun decreaseQuantity(productId: Long)
+    @Query("UPDATE basket SET quantity = quantity - 1  WHERE productId = :productId AND colorId =:colorId AND sizeId =:sizeId AND quantity > 1")
+    suspend fun decreaseQuantity(productId: Long, colorId: Long, sizeId: Long)
 }

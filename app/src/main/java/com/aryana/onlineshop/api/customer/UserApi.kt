@@ -1,5 +1,6 @@
 package com.aryana.onlineshop.api.customer
 
+import com.aryana.onlineshop.model.customer.LoginRequestDto
 import com.aryana.onlineshop.model.customer.User
 import com.aryana.onlineshop.model.customer.UserDto
 import com.aryana.onlineshop.network.ApiResponse
@@ -22,12 +23,12 @@ interface UserApi {
     suspend fun changePassword(
         @Body user : UserDto,
         @Header("Authorization") token : String
-    ): Response<ApiResponse<User>>
+    ): Response<ApiResponse<List<User>>>
 
     @POST("user/login")
     suspend fun login(
-        @Body user : UserDto,
-    ): Response<ApiResponse<UserDto>>
+        @Body user : LoginRequestDto,
+    ): Response<ApiResponse<List<UserDto>>>
 
     @POST("user/register")
     suspend fun register(

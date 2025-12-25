@@ -1,6 +1,7 @@
 package com.aryana.onlineshop.repository.customer
 
 import com.aryana.onlineshop.api.customer.UserApi
+import com.aryana.onlineshop.model.customer.LoginRequestDto
 import com.aryana.onlineshop.model.customer.User
 import com.aryana.onlineshop.model.customer.UserDto
 import com.aryana.onlineshop.network.BaseApiResponse
@@ -16,12 +17,12 @@ class UserRepository @Inject constructor(
             api.getUserInfo(prepareToken(token))
         }
 
-    suspend fun changePassword(user: UserDto, token: String): NetworkResult<User> =
+    suspend fun changePassword(user: UserDto, token: String): NetworkResult<List<User>> =
         BaseApiResponse.safeApiCall {
             api.changePassword(user, prepareToken(token))
         }
 
-    suspend fun login(user: UserDto): NetworkResult<UserDto> =
+    suspend fun login(user: LoginRequestDto): NetworkResult<List<UserDto>> =
         BaseApiResponse.safeApiCall {
             api.login(user)
         }

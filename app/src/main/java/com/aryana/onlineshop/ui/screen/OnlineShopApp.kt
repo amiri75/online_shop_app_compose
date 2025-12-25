@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.aryana.onlineshop.ui.component.TopNavBar
-import com.aryana.onlineshop.ui.component.CheckForFullScreen
+import com.aryana.onlineshop.ui.component.checkForFullScreen
 import com.aryana.onlineshop.ui.navcontoroller.SetupNavGraph
 
 @Composable
@@ -25,7 +25,7 @@ fun OnlineShopApp() {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
-                if (!CheckForFullScreen(navHostController))
+                if (!checkForFullScreen(navHostController))
                     TopNavBar(navHostController)
             }
         ) { innerPadding ->
@@ -33,13 +33,13 @@ fun OnlineShopApp() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(
-                        if (!CheckForFullScreen(navHostController))
+                        if (!checkForFullScreen(navHostController))
                             innerPadding
                         else
                             PaddingValues(0.dp)
                     )
             ) {
-                SetupNavGraph(navHostController,innerPadding)
+                SetupNavGraph(navHostController, innerPadding)
             }
         }
     }

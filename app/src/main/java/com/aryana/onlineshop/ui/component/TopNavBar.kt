@@ -23,16 +23,17 @@ import androidx.navigation.NavHostController
 import com.aryana.onlineshop.R
 import com.aryana.onlineshop.ui.navcontoroller.Screens
 import com.aryana.onlineshop.vm.BasketViewModel
+import com.aryana.onlineshop.vm.UserViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopNavBar(
     navHostController: NavHostController,
     basketViewModel: BasketViewModel = hiltViewModel(),
+    userViewModel: UserViewModel = hiltViewModel(),
 ) {
-
-
     val countBasket by basketViewModel.getCountBasket.collectAsStateWithLifecycle()
+    val user by userViewModel.currentUser.collectAsStateWithLifecycle()
 
     TopAppBar(
         title = {
@@ -49,6 +50,7 @@ fun TopNavBar(
                 IconButton(
                     onClick = {
                         navHostController.navigate(Screens.Basket.route){
+                            popUpTo(Screens.Basket.route) { inclusive = true }
                             launchSingleTop = true
                         }
                     }
@@ -68,7 +70,16 @@ fun TopNavBar(
             }
             AnimatedSlideIn {
                 IconButton(
-                    onClick = {}
+                    onClick = {
+                        if (user != null) {
+                            navHostController.navigate(Screens.Profile.route){
+                                popUpTo(Screens.Profile.route) { inclusive = true }
+                                launchSingleTop = true
+                            }
+                        }else{
+                            navHostController.navigate(Screens.Login.route)
+                        }
+                    }
                 ) {
                     Icon(painterResource(R.drawable.person), contentDescription = null)
                 }

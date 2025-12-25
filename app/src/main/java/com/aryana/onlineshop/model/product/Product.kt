@@ -1,15 +1,15 @@
 package com.aryana.onlineshop.model.product
 
 data class Product(
-    val addDate: String,
-    val category: ProductCategory,
-    val colors: List<ProductColor>,
-    val description: String,
-    val id: Long,
-    val image: String,
-    val lang: String,
-    val price: Int,
-    val sizes: List<ProductSize>,
-    val title: String,
-    val visitCount: Int
+    val addDate: String? = null,
+    val category: ProductCategory? = null,
+    val colors: List<ProductColor>? = null,
+    val description: String? = null,
+    val id: Long? = null,
+    val image: String? = null,
+    val lang: String? = null,
+    val price: Int? = null,
+    val sizes: List<ProductSize>? = null,
+    val title: String? = null,
+    val visitCount: Int? = null
 )

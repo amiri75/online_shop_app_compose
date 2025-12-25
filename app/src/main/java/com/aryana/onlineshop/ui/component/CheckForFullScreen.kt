@@ -6,7 +6,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.aryana.onlineshop.ui.navcontoroller.Screens
 
 @Composable
-fun CheckForFullScreen(navHostController: NavHostController): Boolean {
+fun checkForFullScreen(navHostController: NavHostController): Boolean {
     val fullScreenRoutes = listOf(Screens.ShowProduct.route, Screens.Login.route)
     val backStackEntry = navHostController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry.value?.destination?.route ?: ""

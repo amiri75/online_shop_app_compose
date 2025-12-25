@@ -194,7 +194,7 @@ private fun ProductSizeRow(product: Product?, singleProductViewModel: SingleProd
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(item.title, fontWeight = FontWeight.Bold)
+                    Text(item.title?: "", fontWeight = FontWeight.Bold)
                 }
             }
         }

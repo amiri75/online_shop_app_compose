@@ -88,10 +88,10 @@ fun BasketScreen(
                             CartItem(
                                 item = item,
                                 onIncrease = {
-                                    basketViewModel.increaseQuantity(it.productId)
+                                    basketViewModel.increaseQuantity(it.productId, it.colorId, it.sizeId)
                                 },
                                 onDecrease = {
-                                    basketViewModel.decreaseQuantity(it.productId)
+                                    basketViewModel.decreaseQuantity(it.productId, it.colorId, it.sizeId)
                                 },
                                 onRemove = {
                                     basketViewModel.deleteItem(it)
@@ -132,7 +132,9 @@ fun BasketScreen(
                         Text("Continue Shopping")
                     }
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navHostController.navigate(Screens.UserPayment.route)
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = AppGreen)
                     ) {
                         Text("Proceed to Payment")

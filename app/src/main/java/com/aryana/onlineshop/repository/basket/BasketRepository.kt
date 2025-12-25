@@ -18,11 +18,14 @@ class BasketRepository @Inject constructor(
     suspend fun deleteItem(basketEntity: BasketEntity) =
         dao.delete(basketEntity)
 
-    suspend fun increaseQuantity(productId: Long) =
-        dao.increaseQuantity(productId)
+    suspend fun increaseQuantity(productId: Long, colorId: Long, sizeId: Long) =
+        dao.increaseQuantity(productId, colorId, sizeId)
 
-    suspend fun decreaseQuantity(productId: Long) =
-        dao.decreaseQuantity(productId)
+    suspend fun decreaseQuantity(productId: Long, colorId: Long, sizeId: Long) =
+        dao.decreaseQuantity(productId, colorId, sizeId)
+
+    suspend fun clear() =
+        dao.clear()
 
 
     suspend fun addToBasket(product: Product?, color: ProductColor?, size: ProductSize?) {
